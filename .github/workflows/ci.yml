@@ -1,4 +1,4 @@
-name: Flake8 Pull Request Check
+name: Pull Request Check
 
 on:
   pull_request:
@@ -16,10 +16,8 @@ jobs:
       with:
         python-version: '3.x'
     - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v3
-        with:
-          version: "latest"
-    - name: Install dependencies and Run test script
-      run: |
-        uv build
-        flake8 test/run_test.py
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "latest"
+    - name: Run test script
+      run: uv run test/run_test.py
